@@ -25,27 +25,3 @@ CREATE TABLE `ticket` (
 	PRIMARY KEY (`id`),
 	UNIQUE KEY `IX_byLocalID` (`boardID`,`localID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-
-
-
-
-
-
-
-
-
-
-TRUNCATE TABLE `board`;
-TRUNCATE TABLE `board_ticket_incrementer`;
-TRUNCATE TABLE `ticket`;
-
-SELECT
-	boardID,
-	MAX( localID ),
-	COUNT( * )
-FROM
-	ticket
-GROUP BY
-	boardID
-;
