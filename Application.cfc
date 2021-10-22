@@ -55,6 +55,7 @@ component
 		if ( url.keyExists( "init" ) ) {
 
 			applicationStop();
+			systemOutput( "Resetting application", true );
 			location( url = cgi.script_name, addToken = false );
 
 		}

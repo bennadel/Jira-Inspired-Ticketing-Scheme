@@ -94,6 +94,14 @@ component
 	*/
 	public numeric function incrementAndGetMaxTicketID( required numeric id ) {
 
+		// NOTE: Using LAST_INSERT_ID() to safely increment-and-get the maxTicketID with
+		// reduced locking and network calls while still being thread-safe.
+		return( boardGateway.incrementAndGetMaxTicketID( id ) );
+
+		// --
+		// SHORT-CIRCUITED - this OLDER approach no longer executes:
+		// --
+
 		// Since we need to atomically UPDATE a row and then READ the isolated result,
 		// we need to run this within a SERIALIZABLE transaction. This will LOCK the row
 		// with the given boardID for update ensuring that we read the incremented

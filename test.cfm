@@ -21,8 +21,15 @@
 		loadTestBoard( ninjaBoardID, 1000 );
 	}
 
-	thread action = "join";
-	dump( cfthread );
+	timer
+		type = "outline"
+		label = "Load Test Execution"
+		{
+
+		thread action = "join";
+		dump( cfthread );
+
+	}
 
 	// ------------------------------------------------------------------------------- //
 	// ------------------------------------------------------------------------------- //

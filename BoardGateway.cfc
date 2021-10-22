@@ -121,6 +121,33 @@ component
 
 
 	/**
+	* I increment the maxTicketID value for the given board and return the resultant
+	* value.
+	*/
+	public numeric function incrementAndGetMaxTicketID( required numeric boardID ) {
+
+		```
+		<cfquery name="local.results">
+			UPDATE
+				board_ticket_incrementer
+			SET
+				maxTicketID = LAST_INSERT_ID( maxTicketID + 1 )
+			WHERE
+				boardID = <cfqueryparam value="#boardID#" sqltype="integer" />
+			;
+
+			SELECT
+				LAST_INSERT_ID() AS maxTicketID
+			;
+		</cfquery>
+		```
+
+		return( results.maxTicketID );
+
+	}
+
+
+	/**
 	* I increment the maxTicketID value for the given board.
 	*/
 	public void function incrementMaxTicketID( required numeric boardID ) {
